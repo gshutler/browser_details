@@ -23,9 +23,16 @@ module Check
 
       def call(env)
         message = []
-        if agent_string = env['HTTP_USER_AGENT']
-          agent = UserAgent.parse(agent_string)
-          message << "#{agent.browser} #{agent.version} (#{agent.platform})"
+
+        if env['HTTP_USER_AGENT']
+          agent = UserAgent.parse(env['HTTP_USER_AGENT'])
+
+          agent_details = [agent.browser]
+          agent_details << 'Mobile' if agent.mobile?
+          agent_details << agent.version
+          agent_details << "(#{agent.platform})"
+
+          message << agent_details.join(' ')
         end
 
         request = Rack::Request.new(env)
