@@ -5,6 +5,26 @@ used to make a request.
 
 When possible this includes whether the browser has Javascript enabled or not.
 
+### Before
+
+    Started GET "/" for 127.0.0.1 at 2012-12-26 21:25:14 +0000
+    Processing by HomeController#index as HTML
+    ...
+    Started POST "/posts" for 127.0.0.1 at 2012-12-26 21:25:19 +0000
+    Processing by PostsController#create as HTML
+    ...
+
+### After
+
+    Started GET "/" for 127.0.0.1 at 2012-12-26 21:25:14 +0000
+    Chrome 23.0.1271.95 (Macintosh)
+    Processing by HomeController#index as HTML
+    ...
+    Started POST "/posts" for 127.0.0.1 at 2012-12-26 21:25:19 +0000
+    Chrome 23.0.1271.95 (Macintosh), JS enabled
+    Processing by PostsController#create as HTML
+    ...
+
 ## Installation
 
 Add this line to your application's Gemfile:
