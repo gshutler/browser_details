@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/check-js/version', __FILE__)
+require File.expand_path('../lib/browser_details/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Garry Shutler"]
@@ -8,11 +8,9 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{TODO: Write a gem summary}
   gem.homepage      = ""
 
-  gem.files         = `git ls-files`.split($\)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "check-js"
+  gem.files         = Dir.glob(File.join(File.dirname(__FILE__), 'lib', '**', '*'))
+  gem.name          = "browser_details"
   gem.require_paths = ["lib"]
   gem.add_dependency('useragent', '>= 0.4')
-  gem.version       = Check::Js::VERSION
+  gem.version       = BrowserDetails::VERSION
 end

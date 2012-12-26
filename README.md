@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'check-js'
+    gem 'browser_details'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install check-js
+    $ gem install browser_details
 
 ## Usage
 
