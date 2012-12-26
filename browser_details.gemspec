@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   }
   gem.homepage      = "https://github.com/gshutler/browser_details"
 
-  gem.files         = Dir.glob(File.join(File.dirname(__FILE__), 'lib', '**', '*'))
+  gem.files         = Dir['lib/**/*'] + %w{LICENSE README.md}
   gem.name          = "browser_details"
   gem.require_paths = ["lib"]
   gem.add_dependency('useragent', '>= 0.4')
