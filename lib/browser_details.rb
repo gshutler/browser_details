@@ -58,7 +58,7 @@ class BrowserDetails
       agent_details = [agent.browser]
       agent_details << 'Mobile' if agent.mobile?
       agent_details << agent.version
-      agent_details << "(#{agent.platform})"
+      agent_details << "(#{agent.platform}, #{agent.os})"
 
       message << agent_details.join(' ')
     end
