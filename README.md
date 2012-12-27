@@ -17,11 +17,11 @@ When possible this includes whether the browser has Javascript enabled or not.
 ### After
 
     Started GET "/" for 127.0.0.1 at 2012-12-26 21:25:14 +0000
-    Chrome 23.0.1271.95 (Macintosh)
+    Chrome 23.0.1271.95 (Macintosh, Intel Mac OS X 10_7_5)
     Processing by HomeController#index as HTML
     ...
     Started POST "/posts" for 127.0.0.1 at 2012-12-26 21:25:19 +0000
-    Chrome 23.0.1271.95 (Macintosh), JS enabled
+    Chrome 23.0.1271.95 (Macintosh, Intel Mac OS X 10_7_5), JS enabled
     Processing by PostsController#create as HTML
     ...
 
