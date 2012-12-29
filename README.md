@@ -2,10 +2,11 @@
 
 Have you ever had the conversation:
 
-> User : Your site doesn't work.
-> You : What browser are you using and do you have Javascript enabled?
-> User : What's a browser?
-> You : :unamused:
+> **Your site doesn't work.**  
+> What browser are you using and do you have Javascript enabled?
+>
+> **What's a browser?**  
+> :unamused:
 
 Browser Details makes that problem disappear by capturing a user's browser
 details in your logs. You will get the exact browser version they are using and
