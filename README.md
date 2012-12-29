@@ -1,9 +1,18 @@
 # Browser Details
 
-Browser Details is a Rack Middleware that logs information about the browser
-used to make a request.
+Have you ever had the conversation:
 
-When possible this includes whether the browser has Javascript enabled or not.
+> User : Your site doesn't work.
+> You : What browser are you using and do you have Javascript enabled?
+> User : What's a browser?
+> You : :unamused:
+
+Browser Details makes that problem disappear by capturing a user's browser
+details in your logs. You will get the exact browser version they are using and
+their OS dumped into your logs, and when possible you'll get whether they have
+JS enabled too. All entirely unobtrustively.
+
+You may never need to speak to a user ever again!
 
 ### Before
 
@@ -24,6 +33,12 @@ When possible this includes whether the browser has Javascript enabled or not.
     Chrome 23.0.1271.95 (Macintosh, Intel Mac OS X 10_7_5), JS enabled
     Processing by PostsController#create as HTML
     ...
+
+### How?
+
+Browser Details is a Rack Middleware that logs information about the browser
+used to make a request. When possible this includes whether the browser has
+Javascript enabled or not.
 
 ## Installation
 
