@@ -83,21 +83,16 @@ class BrowserDetails
       message << agent_details.join(' ')
     end
 
-    message << (js_enabled?(request) ? 'JS enabled' : 'JS disabled')
+    # Parameter unchanged
+    if request['utf8'] && request['utf8'] == '✓'
+      message << 'JS disabled'
+
+    # Parameter changed or Ajax
+    elsif request['utf8'] or request.xhr?
+      message << 'JS enabled'
+    end
 
     message.join(', ')
-  end
-
-  # Private: Returns whether JavaScript is enabled or not if it is possible to tell.
-  #
-  # request - The request.
-  #
-  # Returns truthfully if JavaScript is enabled.
-  #
-  def js_enabled?(request)
-    # AJAX request => JS probably enabled.
-    # Have a utf8 element => check if changed by JS.
-    request.xhr? or (request['utf8'] and request['utf8'] != '✓')
   end
 end
 
