@@ -49,6 +49,26 @@ class BrowserDetails
   #
   def call(env)
     request = Rack::Request.new(env)
+    message = message(request)
+
+    # Log a message if any details were gathered.
+    unless message.empty?
+      log_message(env, message)
+    end
+
+    # Delegate to the application we are wrapping.
+    @app.call(env)
+  end
+
+  private
+
+  # Private: Creates a new message.
+  #
+  # request - The request.
+  #
+  # Returns a string with the message we want to show.
+  #
+  def message(request)
     message = []
 
     # Add the user agent details to the message if present.
@@ -63,28 +83,22 @@ class BrowserDetails
       message << agent_details.join(' ')
     end
 
-    # Add whether Javascript is enabled or not if it is possible to tell.
-    if request.xhr?
-      # AJAX request - JS probably enabled.
-      message << 'JS enabled'
-    elsif request['utf8']
-      # Have a utf8 element - check if changed by JS.
-      message << if request['utf8'] == '✓'
-        'JS disabled'
-      else
-        'JS enabled'
-      end
-    end
+    message << (js_enabled?(request) ? 'JS enabled' : 'JS disabled')
 
-    # Log a message if any details were gathered.
-    unless message.empty?
-      log_message(env, message.join(', '))
-    end
-
-    # Delegate to the application we are wrapping.
-    @app.call(env)
+    message.join(', ')
   end
 
+  # Private: Returns whether JavaScript is enabled or not if it is possible to tell.
+  #
+  # request - The request.
+  #
+  # Returns truthfully if JavaScript is enabled.
+  #
+  def js_enabled?(request)
+    # AJAX request => JS probably enabled.
+    # Have a utf8 element => check if changed by JS.
+    request.xhr? or (request['utf8'] and request['utf8'] != '✓')
+  end
 end
 
 # Require the Railtie if Rails is present.
