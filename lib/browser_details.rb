@@ -6,7 +6,6 @@ require "useragent"
 # Public: Middleware for logging the browser details of each request.
 #
 class BrowserDetails
-
   # Set up the log_message method.
   if defined?(Hatchet)
     # If Hatchet is defined include it and define a method for its logger.
@@ -60,11 +59,11 @@ class BrowserDetails
     @app.call(env)
   end
 
-  # Public: Creates a new message.
+  # Public: Creates a browser details message for a request.
   #
-  # request - The request.
+  # request - The Rack::Request to extract brower details from.
   #
-  # Returns a string with the message we want to show.
+  # Returns a String of browser details for the request.
   #
   def self.message(request)
     message = []
@@ -81,13 +80,19 @@ class BrowserDetails
       message << agent_details.join(' ')
     end
 
-    # Parameter unchanged
-    if request['utf8'] && request['utf8'] == '✓'
-      message << 'JS disabled'
-
-    # Parameter changed or Ajax
-    elsif request['utf8'] or request.xhr?
+    # Add whether Javascript is enabled or not if it is possible to tell.
+    if request.xhr?
+      # AJAX request - JS probably enabled.
       message << 'JS enabled'
+    elsif request['utf8']
+      # Have a utf8 parameter - check if changed by JS.
+      message << if request['utf8'] == '✓'
+        # Value unchanged - JS was not executed and therefore disabled.
+        'JS disabled'
+      else
+        # Value changed - JS was executed and therefore enabled.
+        'JS enabled'
+      end
     end
 
     message.join(', ')
