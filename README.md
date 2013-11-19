@@ -84,6 +84,15 @@ The Javascript detection is currently reliant on Rails. If you would like your
 application to be able to detect whether Javascript is enabled too, please
 create an issue, or even better open a pull request.
 
+### Other
+
+If you want to use the message elsewhere, you can pass the current request
+yourself:
+
+```rb
+message = BrowserDetails.message(request)
+```
+
 ## Contributing
 
 1. Fork it

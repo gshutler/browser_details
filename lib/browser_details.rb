@@ -49,7 +49,7 @@ class BrowserDetails
   #
   def call(env)
     request = Rack::Request.new(env)
-    message = message(request)
+    message = self.class.message(request)
 
     # Log a message if any details were gathered.
     unless message.empty?
@@ -60,15 +60,13 @@ class BrowserDetails
     @app.call(env)
   end
 
-  private
-
-  # Private: Creates a new message.
+  # Public: Creates a new message.
   #
   # request - The request.
   #
   # Returns a string with the message we want to show.
   #
-  def message(request)
+  def self.message(request)
     message = []
 
     # Add the user agent details to the message if present.
