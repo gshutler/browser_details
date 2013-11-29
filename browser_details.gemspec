@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
     used to make a request
   }
   gem.homepage      = "https://github.com/gshutler/browser_details"
+  gem.license       = 'MIT'
 
   gem.files         = Dir['lib/**/*'] + %w{LICENSE README.md}
   gem.name          = "browser_details"
